@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'TopNavigation',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-navigation.component.sass']
 })
 export class TopNavigationComponent {
-  public navigationItems: string[] = ["Get Random", "Favorites"];
+  public navigationItems: string[] = ['Get Random', 'Favorites'];
+  public routes = ['', 'favorites'];
+
+  public setCurrentPath(pathName: string): any {
+    return pathName;
+  }
 }

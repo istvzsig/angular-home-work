@@ -1,7 +1,10 @@
 <nav class="top-navigation">
-  <div *ngFor="let item of navigationItems">
+  <div *ngFor="let item of navigationItems; let i = index">
     <li>
       <a
+        routerLink={{routes[i]}}
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
         class="top-navigation--link"
         href="">{{item}}
       </a>
