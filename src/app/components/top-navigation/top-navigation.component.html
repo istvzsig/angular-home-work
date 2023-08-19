@@ -2,11 +2,13 @@
   <div *ngFor="let item of navigationItems; let i = index">
     <li>
       <a
-        routerLink={{routes[i]}}
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
-        class="top-navigation--link"
-        href="">{{item}}
+      click="goToPath(routes[i])"
+      routerLink={{routes[i]}}
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      class="top-navigation--link"
+      id="{{item.replace(' ', '').toLowerCase()}}"
+      href="">{{item}}
       </a>
     </li>
   </div>

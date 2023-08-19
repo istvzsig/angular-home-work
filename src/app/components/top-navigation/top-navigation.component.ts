@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'TopNavigation',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopNavigationComponent {
   public navigationItems: string[] = ['Get Random', 'Favorites'];
-  public routes = ['', 'favorites'];
+  public routes: string[] = ['', 'favorites'];
 
-  public setCurrentPath(pathName: string): any {
-    return pathName;
+  constructor(private router: Router) {}
+
+  public goToPath(path: string): void {
+    this.router.navigate(["/"+path]);
   }
 }

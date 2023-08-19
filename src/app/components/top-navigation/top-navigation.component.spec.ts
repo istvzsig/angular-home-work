@@ -56,17 +56,17 @@ describe('RouterTest', () => {
   });
 
   it(`should go to path '/'`, waitForAsync(() => {
-    component.handleClick('');
+    component.goToPath('');
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   }));
 
   it(`should go to path '/favorites'`, waitForAsync(() => {
-    component.handleClick('favorites');
+    component.goToPath('favorites');
     expect(router.navigate).toHaveBeenCalledWith(['/favorites']);
   }));
 
   it(`should go to path '/**'`, waitForAsync(() => {
-    component.handleClick('**');
+    component.goToPath('**');
     expect(router.navigate).toHaveBeenCalledWith(['/**']);
   }));
 });
