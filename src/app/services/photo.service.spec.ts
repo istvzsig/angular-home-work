@@ -14,6 +14,18 @@ describe('PhotoService', () => {
   let httpMock: HttpTestingController;
   let photoService: PhotoService;
 
+  const names: Photo[] = [
+    {
+      id: 0,
+      author: 'asdsad',
+      width: 2,
+      height: 2,
+      url: 'string',
+      download_url: 'string',
+      isFavorite: false,
+    },
+  ];
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
@@ -37,12 +49,12 @@ describe('PhotoService', () => {
       },
     ];
 
-    photoService.getPhotos().subscribe((res) => {
+    photoService.getPhotos(1, 12).subscribe((res) => {
       expect(res).toEqual(names);
     });
 
     const request = httpMock.expectOne(
-      'https://picsum.photos/v2/list?page=2&limit=20'
+      'https://picsum.photos/v2/list?page=1&limit=12'
     );
     expect(request.request.method).toEqual('GET');
     request.flush(names);
@@ -51,17 +63,6 @@ describe('PhotoService', () => {
   });
 
   it('addToFavoritePhoto() should add photo from favorites', () => {
-    const names: Photo[] = [
-      {
-        id: 0,
-        author: 'asdsad',
-        width: 2,
-        height: 2,
-        url: 'string',
-        download_url: 'string',
-        isFavorite: false,
-      },
-    ];
     photoService.addToFavoritePhoto('0').subscribe((res) => {
       expect(res).toEqual(names);
     });
@@ -74,17 +75,6 @@ describe('PhotoService', () => {
   });
 
   it('removeFavoritePhoto() should remove photo from favorites', () => {
-    const names: Photo[] = [
-      {
-        id: 0,
-        author: 'asdsad',
-        width: 2,
-        height: 2,
-        url: 'string',
-        download_url: 'string',
-        isFavorite: false,
-      },
-    ];
     photoService.removeFavoritePhoto('0').subscribe((res) => {
       expect(res).toEqual(names);
     });
