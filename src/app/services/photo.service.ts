@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, delay, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Photo } from '../models/photo';
-import { FavoritePhotosComponent } from '../components/favorite-photos/favorite-photos.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PhotoService {
-  public photos: Photo[];
+  public photos = new BehaviorSubject([]);
   public favorites: Photo[] = [];
 
   public page: number = 1;
@@ -41,9 +40,5 @@ export class PhotoService {
       `http://120.0.0.1:4200/photos/${photoId}`,
       this.headerConfig
     );
-  }
-
-  updateUrl(url: string): string {
-    return 'asd'
   }
 }
