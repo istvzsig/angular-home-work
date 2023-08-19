@@ -41,8 +41,7 @@ describe('RouterTest', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
-      declarations: [TopNavigationComponent, InfinitePhotoStreamComponent, FavoritePhotosComponent
-      ]}).compileComponents().then(() => {
+      declarations: [TopNavigationComponent]}).compileComponents().then(() => {
         router = TestBed.inject(Router);
         spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
       });
