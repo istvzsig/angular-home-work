@@ -8,14 +8,14 @@ import { InfiniteScrollService } from './services/infinite-scroll/infinite-scrol
 import { AppComponent } from './app.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { InfinitePhotoStreamComponent } from './components/infinite-photo-stream/infinite-photo-stream.component';
+import { PhotoStreamComponent } from './components/photo-stream/photo-stream-component';
 import { FavoritePhotosComponent } from './components/favorite-photos/favorite-photos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavigationComponent,
-    InfinitePhotoStreamComponent,
+    PhotoStreamComponent,
     FavoritePhotosComponent,
   ],
   imports: [
