@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Photo } from 'src/app/models/photo';
-import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 
 @Component({
   selector: 'FavoritePhotosComponent',
@@ -19,7 +19,6 @@ export class FavoritePhotosComponent {
     this.currentPhoto = window.localStorage.getItem(
       String(this.photoService.currentPhotoId)
     );
-    console.log(this.currentPhoto);
   }
 
   loadFavoritePhotosFromLocalStorage() {

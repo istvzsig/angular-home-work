@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoritePhotosComponent } from './favorite-photos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 import { PhotoStreamComponent } from '../photo-stream/photo-stream-component';
 
 describe('FavoritePhotosComponent', () => {
