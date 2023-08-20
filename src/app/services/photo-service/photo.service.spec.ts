@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import { PhotoService } from './photo.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { InfinitePhotoStreamComponent } from '../components/infinite-photo-stream/infinite-photo-stream.component';
+import { InfinitePhotoStreamComponent } from '../../components/infinite-photo-stream/infinite-photo-stream.component';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { Photo } from '../models/photo';
+import { Photo } from '../../models/photo';
 import { Observable } from 'rxjs';
 
 describe('PhotoService', () => {
