@@ -1,9 +1,24 @@
 @import '~normalize.css'
-
-$margin: 2.5px
+@import './src/assets/css/color-palette'
+@import './src/assets/css/dimensions'
 
 *
   font-family: "montserrat", sans-serif
 
 main
   min-height: 120vh
+
+body
+  background: linear-gradient(-45deg, $purple80s1, $purple80s2, $frost1, $frost2)
+  background-size: 400% 400%
+  animation: animate-gradient 15s ease infinite
+  height: 100vh
+  background: white !important
+
+@keyframes animate-gradient
+  0%
+    background-position: 0% 50%
+  50%
+    background-position: 100% 50%
+  100%
+    background-position: 0% 50%
