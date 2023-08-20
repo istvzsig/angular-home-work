@@ -1,0 +1,59 @@
+.infinite-photo-stream
+  display: flex
+  flex-wrap: wrap
+  justify-conten: center
+  align-items: center
+  margin-top: 100px
+  background-color: transparent
+  min-height: 150vh
+  &--photo
+    position: relative
+    width: calc(100vw / 3)
+    cursor: pointer
+    overflow: hidden !important
+    transition: opacity 200ms ease-out
+    img
+      width: 100%
+      vertical-align: middle
+    &:hover
+      opacity: 1 !important
+  &:hover > *
+      opacity: .9
+
+  &--favorite-icon
+    position: absolute
+    top: 0
+    right: 0
+    margin: 1rem
+    font-size: 21px
+    background-blend-mode: soft-light
+    animation: 300ms linear forwards
+
+  @keyframes show-favorite-icon
+    0%
+      opacity: 0 important
+    100%
+      opacity: 1 important
+
+  @keyframes hide-favorite-icon
+    0%
+      opacity: 1 important
+    100%
+      opacity: 0 important
+
+
+.spinner
+  position: relative
+  top: 100px
+  left: 0
+  width: 100vw
+  height: calc(100vh - 100px)
+  z-index: 1000
+  display: flex
+  align-items: center
+  justify-content: center
+  background-color: rgba(0, 0, 0, .88)
+.show
+  visibility: visible
+.hide
+  visibility: hidden

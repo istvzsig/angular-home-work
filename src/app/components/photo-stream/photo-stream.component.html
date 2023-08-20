@@ -1,0 +1,10 @@
+<div class="infinite-photo-stream">
+  <div (click)="photoService.toggleFavoritePhoto(photo)" *ngFor="let photo of photoService.photos" class="infinite-photo-stream--photo">
+    <p *ngIf="photo.isFavorite" class="infinite-photo-stream--favorite-icon">♥️</p>
+    <img [src]="photo.download_url" alt="No Image.">
+    <div *ngIf="infiniteScrollService.isLoading" class="loader">
+      <img src="https://cdn.dribbble.com/users/108183/screenshots/2301400/spinnervlll.gif" alt="">
+    </div>
+  </div>
+</div>
+
