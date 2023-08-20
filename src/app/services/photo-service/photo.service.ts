@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Photo } from 'src/app/models/photo';
 import { Router } from '@angular/router';
-import { InfiniteScrollService } from '../infinite-scroll/infinite-scroll.service';
+import { InfiniteScrollService } from '../infinite-scroll-service/infinite-scroll.service';
 import { Observable, concatMap, delay, from, of } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class PhotoService {
   public pageNumber: number = 1;
   public batchSize: number = 12;
   public currentPhotoId: number;
-  public delay = Math.floor(Math.random() * (300 - 200 + 1) + 200);
+  public delay = Math.floor(Math.random() * (3000 - 1200 + 1) + 1200);
 
   private headerConfig = {
     headers: new HttpHeaders({
@@ -49,6 +49,7 @@ export class PhotoService {
       error: (err: string) => console.error(err),
       complete: () => this.infiniteScrollService.toggleLoading(),
     });
+    this.pageNumber++;
   }
 
   public loadPhotos(): void {
@@ -65,7 +66,7 @@ export class PhotoService {
     });
     this.photos = loadedPhotos;
   }
-
+  
   public addToFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.post(
       'http://120.0.0.1:4200/photos',
