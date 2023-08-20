@@ -1,3 +1,7 @@
+@import './src/assets/css/color-palette'
+@import './src/assets/css/dimensions'
+@import './src/assets/css/animation'
+
 nav
   display: flex
   position: fixed
@@ -7,7 +11,7 @@ nav
   align-items: center
   padding: 0
   z-index: 100000
-  background: rgba(255, 255, 255, .4)
+  // background: linear-gradient(-45deg, $purple80s1, $purple80s2, $frost1, $frost2)
   backdrop-filter: blur(6px)
   *
     text-decoration: none
@@ -17,7 +21,7 @@ nav
       padding: 1rem
       list-style: none
       margin: 1rem
-      background: transparent
+      // background: linear-gradient(-45deg, $purple80s1, $purple80s2, $frost1, $frost2)
       cursor: pointer
       border: 2px solid transparent
       border-radius: 5px
@@ -25,6 +29,8 @@ nav
         font-weight: 800
         color: black
       &.active
-        background-color: black
+        background: linear-gradient(-45deg, $purple80s1, $purple80s2, $frost1, $frost2)
         a
           color: white
+      &:hover
+        letter-spacing: 1px

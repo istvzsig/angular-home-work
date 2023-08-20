@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
   baseApiUrl: 'https://picsum.photos',
-  localHostUrl: '127.0.0.1:4200',
+  localHostUrl: 'localhost',
   photoProcess: {
     pageNumber: 1,
     batchSize: 12,

@@ -15,5 +15,6 @@ export class TopNavigationComponent {
 
   public goToPath(path: string): void {
     this.router.navigate(["/"+path]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); // reset back to top
   }
 }

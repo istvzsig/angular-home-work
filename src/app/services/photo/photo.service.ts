@@ -13,11 +13,11 @@ export class PhotoService {
   public photos: Photo[] = [];
   public favoritePhotos: Photo[] = [];
   public currentPhoto: any;
+  public pageNumber: number = 1;
+  public batchSize: number = 12;
   public currentPhotoId: number;
+  public delay = Math.floor(Math.random() * (3000 - 1200 + 1) + 1200);
   public isLoading: boolean = false;
-  public pageNumber: number = environment.photoProcess.pageNumber;
-  public randomDelay = environment.photoProcess.randomDelay;
-  public batchSize: number = environment.photoProcess.batchSize;
 
   @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
@@ -50,7 +50,7 @@ export class PhotoService {
       next: (response: any) => {
         setTimeout(
           () => (this.photos = [...this.photos, ...response]),
-          this.randomDelay
+          this.delay
         );
       },
       error: (err: string) => console.error(err),
@@ -73,7 +73,7 @@ export class PhotoService {
   
   public addToFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.post(
-      `${environment.localHostUrl}/photos`,
+      'http://120.0.0.1:4200/photos',
       { id: photoId },
       this.headerConfig
     );
@@ -81,7 +81,7 @@ export class PhotoService {
 
   public removeFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.delete(
-      `${environment.localHostUrl}/photos/${photoId}`,
+      `http://120.0.0.1:4200/photos/${photoId}`,
       this.headerConfig
     );
   }
