@@ -6,27 +6,21 @@ import { PhotoService } from '../photo-service/photo.service';
 })
 export class InfiniteScrollService {
   public isLoading: boolean = false;
-
-  public scrollY: number;
-  public innerHeight: number;
   public delay = Math.floor(Math.random() * (300 - 200 + 1) + 200);
 
-  constructor(private photoService: PhotoService) {}
+  constructor() {}
 
-  public update(): void {
+  public updateOnScrollEvent(photoService: PhotoService): void {
     window.addEventListener('scroll',  (e:Event) => {
-      this.scrollY = window.scrollY;
-      this.innerHeight = window.innerHeight;
-      this.photoService.appendPhotos();
+      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      if(scrollTop +  clientHeight + 1 > scrollHeight) {
+       photoService.pageNumber++;
+       photoService.appendPhotos();
+      }
     });
   }
 
   public toggleLoading(): boolean {
     return this.isLoading = !this.isLoading;
-  }
-  
-  public onScroll(): void {
-    this.photoService.pageNumber++;
-    this.photoService.appendPhotos();
   }
 }
