@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo-service/photo.service';
 import { Photo } from 'src/app/models/photo';
-import { InfiniteScrollService } from 'src/app/services/infinite-scroll/infinite-scroll.service';
+import { InfiniteScrollService } from 'src/app/services/infinite-scroll-service/infinite-scroll.service';
 
 @Component({
   selector: 'PhotoStream',
