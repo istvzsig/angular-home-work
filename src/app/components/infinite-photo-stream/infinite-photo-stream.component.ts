@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from 'src/app/services/photo.service';
 import { Photo } from 'src/app/models/photo';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'InfinitePhotoStream',
@@ -9,25 +8,56 @@ import { Observable } from 'rxjs';
   styleUrls: ['./infinite-photo-stream.component.sass'],
 })
 export class InfinitePhotoStreamComponent implements OnInit {
-  public photos: Photo[];
   public isLoading: boolean = false;
+  public photos: Photo[] = [];
+  private page: number = 1;
+  private batchLimit: number = 12;
+  private delay = Math.floor(Math.random() * (300 - 200 + 1) + 200);
 
   constructor(private photoService: PhotoService) {}
 
   ngOnInit() {
-    this.photoService
-    .getPhotos()
-    .subscribe((fetchedPhotos: any) => {
-      this.photos = fetchedPhotos;
+    this.loadPhotos();
+  }
+
+  toggleLoading(): boolean {
+    return this.isLoading = !this.isLoading;
+  }
+
+  toggleSpinner(): string {
+    return 'spinner ' + this.isLoading ? 'show' : 'hide'; 
+  }
+
+  loadPhotos(): void {
+    this.toggleLoading();
+    this.photoService.getPhotos(this.page, this.batchLimit).subscribe({
+      next: response => {
+        setTimeout(() => this.photos = response, this.delay)
+      },
+      error: err => console.error(err),
+      complete: () => this.toggleLoading()
+    });
+  }
+
+  appendPhotos(): void {
+    this.toggleLoading();
+    this.photoService.getPhotos(this.page, this.batchLimit).subscribe({
+      next: response => {
+        setTimeout(() => this.photos = [...this.photos, ...response], this.delay)
+      },
+      error: err => console.error(err),
+      complete: () => this.toggleLoading()
     });
   }
 
   public toggleFavoritePhoto(photo: Photo) {
-    if(!photo.isFavorite) {
+    if(!photo.isFavorite && !(window.localStorage.getItem(String(photo.id)))) {
       photo.isFavorite = true;
+      window.localStorage.setItem(String(photo.id), JSON.stringify(photo));
       return this.handleToAddFavoritePhoto(photo);
     }
     photo.isFavorite = false;
+    window.localStorage.removeItem(String(photo.id));
     return this.handleToRemoveFavoritePhoto(photo);
   }
 
@@ -37,6 +67,7 @@ export class InfinitePhotoStreamComponent implements OnInit {
     .subscribe(() => {
       photo.isFavorite = true;
     });
+    
   }
 
   public handleToRemoveFavoritePhoto(photo: Photo): any {
@@ -45,9 +76,11 @@ export class InfinitePhotoStreamComponent implements OnInit {
     .subscribe(() => {
       photo.isFavorite = false;
     });
+
   }
 
   public onScroll(): void {
-    console.log('Ricky')
+    this.page++;
+    this.appendPhotos();
   }
 }

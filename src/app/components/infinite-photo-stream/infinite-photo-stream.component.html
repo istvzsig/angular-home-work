@@ -1,14 +1,9 @@
-<!-- <div *ngIf="imagesLoaded">preloader</div> -->
-
 <div class="infinite-photo-stream">
   <div (click)="toggleFavoritePhoto(photo)" *ngFor="let photo of photos" class="infinite-photo-stream--photo">
-    <h5 *ngIf="!photo.isFavorite">✅</h5>
-    <h5 *ngIf="photo.isFavorite">❌</h5>
-    <img [src]="photo.download_url" alt="freak">
+    <img [src]="photo.download_url" alt="">
   </div>
 </div>
+<div [ngClass]="isLoading ? 'spinner show' : 'spinner hide' ">Loadering.</div>
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()"></div>
 
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="1000" (scrolled)="onScroll()">
-</div>
 
-<div class="spinner" *ngIf="isLoading">Loadering.</div>
