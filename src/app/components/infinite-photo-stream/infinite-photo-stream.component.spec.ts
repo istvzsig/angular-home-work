@@ -1,14 +1,17 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { InfinitePhotoStreamComponent } from './infinite-photo-stream.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { PhotoService } from 'src/app/services/photo.service';
+import { PhotoService } from 'src/app/services/photo-service/photo.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { Photo } from 'src/app/models/photo';
+import { InfinitePhotoStreamComponent } from './infinite-photo-stream.component';
+import { InfiniteScrollService } from 'src/app/services/infinite-scroll/infinite-scroll.service';
 
 describe('InfinitePhotoStreamComponent', () => {
   let component: InfinitePhotoStreamComponent;
   let fixture: ComponentFixture<InfinitePhotoStreamComponent>;
+  let photoService: PhotoService;
+  let infiniteScrollService: InfiniteScrollService;
+  
   const photo = {
     id: 0,
     author: 'asdsad',
@@ -18,6 +21,7 @@ describe('InfinitePhotoStreamComponent', () => {
     download_url: 'string',
     isFavorite: false,
   };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule, InfiniteScrollModule],
@@ -25,6 +29,8 @@ describe('InfinitePhotoStreamComponent', () => {
       providers: [HttpClient, PhotoService],
     });
     fixture = TestBed.createComponent(InfinitePhotoStreamComponent);
+    photoService = TestBed.inject(PhotoService);
+    infiniteScrollService = TestBed.inject(InfiniteScrollService);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -57,26 +63,26 @@ describe('InfinitePhotoStreamComponent', () => {
 
   describe('loadPhotos()', () => {
     it('loadPhotos() should return string', () => {
-      spyOn(component, 'loadPhotos');
-      component.loadPhotos();
-      expect(component.loadPhotos).toHaveBeenCalled();
+      spyOn(photoService, 'loadPhotos');
+      photoService.loadPhotos();
+      expect(photoService.loadPhotos).toHaveBeenCalled();
     });
   });
 
   describe('appendPhotos()', () => {
     it('appendPhotos() should return string', () => {
-      spyOn(component, 'appendPhotos');
-      component.appendPhotos();
-      expect(component.appendPhotos).toHaveBeenCalled();
+      spyOn(photoService, 'appendPhotos');
+      photoService.appendPhotos();
+      expect(photoService.appendPhotos).toHaveBeenCalled();
     });
   });
 
   describe('toggleFavoritePhoto()', () => {
     it('toggleFavoritePhoto() should return boolean', () => {
 
-      spyOn(component, 'toggleFavoritePhoto');
-      component.toggleFavoritePhoto(photo);
-      expect(component.toggleFavoritePhoto).toHaveBeenCalled();
+      spyOn(photoService, 'toggleFavoritePhoto');
+      photoService.toggleFavoritePhoto(photo);
+      expect(component.photoService).toHaveBeenCalled();
       expect(photo.isFavorite).toBe(false);
       photo.isFavorite = true;
       expect(photo.isFavorite).toBe(true);
@@ -86,26 +92,26 @@ describe('InfinitePhotoStreamComponent', () => {
   describe('handleToAddFavoritePhoto()', () => {
     it('handleToAddFavoritePhoto() should return boolean', () => {
 
-      spyOn(component, 'handleToAddFavoritePhoto');
-      component.handleToAddFavoritePhoto(photo);
-      expect(component.handleToAddFavoritePhoto).toHaveBeenCalled();
+      spyOn(photoService, 'handleToAddFavoritePhoto');
+      photoService.handleToAddFavoritePhoto(photo);
+      expect(photoService.handleToAddFavoritePhoto).toHaveBeenCalled();
     });
   });
 
   describe('handleToRemoveFavoritePhoto()', () => {
     it('handleToRemoveFavoritePhoto() should return boolean', () => {
 
-      spyOn(component, 'handleToRemoveFavoritePhoto');
-      component.handleToRemoveFavoritePhoto(photo);
-      expect(component.handleToRemoveFavoritePhoto).toHaveBeenCalled();
+      spyOn(photoService, 'handleToRemoveFavoritePhoto');
+      photoService.handleToRemoveFavoritePhoto(photo);
+      expect(photoService.handleToRemoveFavoritePhoto).toHaveBeenCalled();
     });
   });
   
   describe('onScroll()', () => {
     it('onScroll() should return boolean', () => {
-      spyOn(component, 'onScroll');
-      component.onScroll();
-      expect(component.onScroll).toHaveBeenCalled();
+      spyOn(infiniteScrollService, 'onScroll');
+      infiniteScrollService.onScroll();
+      expect(infiniteScrollService.onScroll).toHaveBeenCalled();
     });
   });
   

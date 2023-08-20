@@ -24,11 +24,5 @@ export class InfinitePhotoStreamComponent implements OnInit {
   toggleSpinner(): string {
     return 'spinner ' + this.isLoading ? 'show' : 'hide'; 
   }
-
 // ***************
-
-  public onScroll(): void {
-    this.photoService.pageNumber++;
-    this.photoService.appendPhotos();
-  }
 }
