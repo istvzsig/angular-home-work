@@ -1,17 +1,18 @@
 .infinite-photo-stream
   display: flex
   flex-wrap: wrap
-  justify-conten: center
-  align-items: center
   margin-top: 100px
   background-color: transparent
-  min-height: 150vh
+  
   &--photo
+    $margin: 2.5px
     position: relative
-    width: calc(100vw / 3)
     cursor: pointer
     overflow: hidden !important
     transition: opacity 200ms ease-out
+    margin: $margin
+    border-radius: 0
+    max-width: calc(100vw / 3 - $margin * 2)
     img
       width: 100%
       vertical-align: middle
