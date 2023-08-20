@@ -1,0 +1,23 @@
+.favorite-photo-stream
+  justify-conten: center
+  align-items: center
+  width: 100vw
+  margin-top: 100px
+  background-color: transparent
+  h3
+    text-align: center
+  &--photo
+    width: calc(100vw / 3)
+    float: left
+    max-height: 200px
+    cursor: pointer
+    overflow: hidden !important
+    transition: opacity 200ms ease-out
+    img
+      width: 100%
+      vertical-align: middle
+    &:hover
+      opacity: 1 !important
+  &:hover > *
+      opacity: .9
+
