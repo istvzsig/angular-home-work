@@ -7,6 +7,8 @@ nav
   align-items: center
   padding: 0
   z-index: 100000
+  background: rgba(255, 255, 255, .4)
+  backdrop-filter: blur(6px)
   *
     text-decoration: none
     text-transform: uppercase
@@ -17,7 +19,12 @@ nav
       margin: 1rem
       background: transparent
       cursor: pointer
+      border: 2px solid transparent
+      border-radius: 5px
       a
-        color: blue
+        font-weight: 800
+        color: black
       &.active
-        background: red 
+        background-color: black
+        a
+          color: white
