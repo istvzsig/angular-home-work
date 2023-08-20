@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoritePhotosComponent } from './favorite-photos.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { PhotoService } from 'src/app/services/photo.service';
-import { InfinitePhotoStreamComponent } from '../infinite-photo-stream/infinite-photo-stream.component';
+import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoStreamComponent } from '../photo-stream/photo-stream-component';
 
 describe('FavoritePhotosComponent', () => {
   let component: FavoritePhotosComponent;
@@ -13,7 +13,7 @@ describe('FavoritePhotosComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
-      declarations: [InfinitePhotoStreamComponent,FavoritePhotosComponent],
+      declarations: [PhotoStreamComponent, FavoritePhotosComponent],
       providers: [HttpClient, PhotoService]
     });
     fixture = TestBed.createComponent(FavoritePhotosComponent);
@@ -35,7 +35,7 @@ describe('FavoritePhotosComponent', () => {
 
   describe('removeFavoritePhotosFromLocalStorage()', () => {
     it('should remove favorite from local storage', () => {
-      const stream = InfinitePhotoStreamComponent;
+      const stream = PhotoStreamComponent;
       component.removeFavoritePhotosFromLocalStorage(0);
       expect(window.localStorage.getItem("0")).toBe('undefined');
     });
