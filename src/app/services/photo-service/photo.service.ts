@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Photo } from 'src/app/models/photo';
 import { Router } from '@angular/router';
+import { InfiniteScrollService } from '../infinite-scroll/infinite-scroll.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,10 @@ export class PhotoService {
     }),
   };
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    public infiniteScrollService: InfiniteScrollService) {}
 
   public getPhotos(): Observable<Photo[]> {
     return this.http.get<Photo[]>(
@@ -33,7 +37,7 @@ export class PhotoService {
   }
 
   public appendPhotos(): void {
-    // this.toggleLoading();
+    this.infiniteScrollService.toggleLoading();
     this.getPhotos().subscribe({
       next: (response: any) => {
         setTimeout(
@@ -42,18 +46,18 @@ export class PhotoService {
         );
       },
       error: (err: string) => console.error(err),
-      // complete: () => this.toggleLoading()
+      complete: () => this.infiniteScrollService.toggleLoading(),
     });
   }
 
   public loadPhotos(): void {
-    // this.toggleLoading();
+    this.infiniteScrollService.toggleLoading();
     this.getPhotos().subscribe({
       next: (response: any) => {
         setTimeout(() => (this.photos = response), this.delay);
       },
       error: (err: string) => console.error(err),
-      // complete: () => this.toggleLoading()
+      complete: () => this.infiniteScrollService.toggleLoading(),
     });
   }
 
