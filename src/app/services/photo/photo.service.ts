@@ -73,7 +73,7 @@ export class PhotoService {
   
   public addToFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.post(
-      'http://120.0.0.1:4200/photos',
+      `${environment.localHostUrl}/photos`,
       { id: photoId },
       this.headerConfig
     );
@@ -81,7 +81,7 @@ export class PhotoService {
 
   public removeFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.delete(
-      `http://120.0.0.1:4200/photos/${photoId}`,
+      `${environment.localHostUrl}/photos/${photoId}`,
       this.headerConfig
     );
   }
