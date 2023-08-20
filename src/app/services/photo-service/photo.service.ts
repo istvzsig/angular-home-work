@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Photo } from 'src/app/models/photo';
 import { Router } from '@angular/router';
 import { InfiniteScrollService } from '../infinite-scroll/infinite-scroll.service';
-import { Observable } from 'rxjs';
+import { Observable, concatMap, delay, from, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,8 @@ export class PhotoService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    public infiniteScrollService: InfiniteScrollService) {}
+    public infiniteScrollService: InfiniteScrollService
+  ) {}
 
   public getPhotos(): Observable<Photo[]> {
     return this.http.get<Photo[]>(
@@ -51,14 +52,18 @@ export class PhotoService {
   }
 
   public loadPhotos(): void {
+    const loadedPhotos: any[] = [];
     this.infiniteScrollService.toggleLoading();
     this.getPhotos().subscribe({
       next: (response: any) => {
-        setTimeout(() => (this.photos = response), this.delay);
+        from(response)
+          .pipe(concatMap((data) => of(data).pipe(delay(300))))
+          .subscribe((photo) => loadedPhotos.push(photo));
       },
       error: (err: string) => console.error(err),
       complete: () => this.infiniteScrollService.toggleLoading(),
     });
+    this.photos = loadedPhotos;
   }
 
   public addToFavoritePhoto(photoId: string): Observable<Object> {
