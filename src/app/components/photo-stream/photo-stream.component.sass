@@ -1,9 +1,10 @@
 .infinite-photo-stream
-  display: flex
-  flex-wrap: wrap
-  margin-top: 100px
-  background-color: transparent
-  
+  &--photo-gallery
+    display: flex
+    flex-wrap: wrap
+    margin-top: 100px
+    background-color: transparent
+    height: 100%
   &--photo
     $margin: 2.5px
     position: relative
@@ -42,19 +43,18 @@
     100%
       opacity: 0 important
 
+  &--loading-spinner
+    $width: 200px
+    width: 100%
+    max-width: 200px
+    left: calc(50% - $width / 2)
+    position: relative
+    margin: 100px 0
+    img
+      width: 100%
+      vertical-align: middle
 
-.spinner
-  position: relative
-  top: 100px
-  left: 0
-  width: 100vw
-  height: calc(100vh - 100px)
-  z-index: 1000
-  display: flex
-  align-items: center
-  justify-content: center
-  background-color: rgba(0, 0, 0, .88)
-.show
-  visibility: visible
-.hide
-  visibility: hidden
+    &.show
+      opacity: 1
+    &.hide
+      opacity: 0
