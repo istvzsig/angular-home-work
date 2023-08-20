@@ -1,14 +1,6 @@
 <div class="photo-page">
   <img class="photo-page--photo" [src]="currentPhoto.download_url" alt="">
-  <p>{{currentPhoto.id}}</p>
   <h1>{{currentPhoto.author}}</h1>
-  <a class="photo-page--home-button" (click)="goHome()" routerLink="['/']">ASDASD</a>
+  <a (click)="removeFavorite()">I Don't Like This 💔</a>
+  <a class="photo-page--home-button" (click)="goHome()" routerLink="['/']">Home</a>
 </div>
-
-<!-- id: number;
- author: string;
- width: number;
- height: number;
- url: string;
- download_url: string;
- isFavorite: boolean; -->

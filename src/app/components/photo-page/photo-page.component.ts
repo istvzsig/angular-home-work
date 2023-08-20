@@ -20,4 +20,9 @@ export class PhotoPageComponent {
   public goHome(): void {
     this.router.navigate(["/"]);
   }
+
+  public removeFavorite() {
+    this.photoService.removeFavoritePhoto(this.currentPhoto.id);
+    this.router.navigate(['/favorites']);
+  }
 }
