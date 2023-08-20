@@ -1,6 +1,7 @@
 <div class="favorite-photo-stream">
   <h3 *ngIf="!favoritePhotos.length">You have not have saved photos</h3>
-  <div (click)="openPhoto(photo.id)" [routerLink]="['/photos', photo.id]" *ngFor="let photo of favoritePhotos" class="favorite-photo-stream--photo">
+  <div (click)="openPhoto(photo)" [routerLink]="['/photos', photo.id]" *ngFor="let photo of favoritePhotos" class="favorite-photo-stream--photo">
     <img [src]="photo.download_url" alt="">
+    <p>{{photo.id}}</p>
   </div>
 </div>
