@@ -16,16 +16,17 @@ export class FavoritePhotosComponent {
 
   ngOnInit() {
     this.loadFavoritePhotosFromLocalStorage();
-    this.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
-    console.log(this.currentPhoto)
+    this.currentPhoto = window.localStorage.getItem(
+      String(this.photoService.currentPhotoId)
+    );
+    console.log(this.currentPhoto);
   }
 
   loadFavoritePhotosFromLocalStorage() {
     const favorites: Photo[] = [];
     let i, keys;
 
-    keys = Object.keys(localStorage),
-    i = keys.length;
+    (keys = Object.keys(localStorage)), (i = keys.length);
 
     while (i--) {
       const photo = JSON.parse(String(window.localStorage.getItem(keys[i])));
@@ -33,17 +34,20 @@ export class FavoritePhotosComponent {
     }
     this.favoritePhotos = favorites;
   }
-  
+
   removeFavoritePhotosFromLocalStorage(photoId: number) {
-    if(!window.localStorage.getItem(String(photoId))) {
+    if (!window.localStorage.getItem(String(photoId))) {
       return console.log('Nothing to remove');
     }
     window.localStorage.removeItem(String(photoId));
     console.log('Photo removed from local storage', photoId);
     this.loadFavoritePhotosFromLocalStorage();
   }
-  
+
   openPhoto(photo: any) {
+    if (!photo) {
+      this.router.navigate(['/']);
+    }
     this.photoService.currentPhotoId = photo.id;
     this.router.navigate(['/photos', photo.id]);
   }
