@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Photo } from 'src/app/models/photo';
 import { Router } from '@angular/router';
-import { InfiniteScrollService } from '../infinite-scroll-service/infinite-scroll.service';
+import { InfiniteScrollService } from '../infinite-scroll/infinite-scroll.service';
 import { Observable, concatMap, delay, from, of } from 'rxjs';
 
 @Injectable({
@@ -16,12 +16,15 @@ export class PhotoService {
   public batchSize: number = 12;
   public currentPhotoId: number;
   public delay = Math.floor(Math.random() * (3000 - 1200 + 1) + 1200);
+  public isLoading: boolean = false;
+
+  @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
   private headerConfig = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
-      Autohorization: '',
+      'Autohorization': '',
     }),
   };
 
@@ -37,8 +40,11 @@ export class PhotoService {
     );
   }
 
+  public toggleLoading(): boolean {
+    return this.isLoading = !this.isLoading;
+  }
+
   public appendPhotos(): void {
-    this.infiniteScrollService.toggleLoading();
     this.getPhotos().subscribe({
       next: (response: any) => {
         setTimeout(
@@ -47,14 +53,12 @@ export class PhotoService {
         );
       },
       error: (err: string) => console.error(err),
-      complete: () => this.infiniteScrollService.toggleLoading(),
     });
     this.pageNumber++;
   }
 
   public loadPhotos(): void {
     const loadedPhotos: any[] = [];
-    this.infiniteScrollService.toggleLoading();
     this.getPhotos().subscribe({
       next: (response: any) => {
         from(response)
@@ -62,7 +66,6 @@ export class PhotoService {
           .subscribe((photo) => loadedPhotos.push(photo));
       },
       error: (err: string) => console.error(err),
-      complete: () => this.infiniteScrollService.toggleLoading(),
     });
     this.photos = loadedPhotos;
   }

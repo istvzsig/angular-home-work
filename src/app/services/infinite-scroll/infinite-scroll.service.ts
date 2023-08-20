@@ -1,24 +1,21 @@
-import { Injectable } from '@angular/core';
+import { AfterViewInit, ElementRef, Injectable, ViewChild } from '@angular/core';
 import { PhotoService } from '../photo-service/photo.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InfiniteScrollService {
-  public isLoading: boolean = false;
 
   public updateOnScrollEvent(photoService: PhotoService): void {
     window.addEventListener('scroll', (e: Event) => {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
+      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight) {
+        photoService.toggleLoading()
         photoService.pageNumber++;
         photoService.appendPhotos();
       }
+      else photoService.toggleLoading();
     });
   }
 
-  public toggleLoading(): boolean {
-    return (this.isLoading = !this.isLoading);
-  }
 }
