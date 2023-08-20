@@ -1,9 +1,9 @@
 <div class="infinite-photo-stream">
-  <div (click)="toggleFavoritePhoto(photo)" *ngFor="let photo of photos" class="infinite-photo-stream--photo">
+  <div (click)="photoService.toggleFavoritePhoto(photo)" *ngFor="let photo of photoService.photos" class="infinite-photo-stream--photo">
     <img [src]="photo.download_url" alt="">
   </div>
 </div>
-<div [ngClass]="isLoading ? 'spinner show' : 'spinner hide' ">Loadering.</div>
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()"></div>
+<!-- <div [ngClass]="isLoading ? 'spinner show' : 'spinner hide' ">Loadering.</div> -->
+<!-- <div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="2000" (scrolled)="onScroll()"></div> -->
 
 

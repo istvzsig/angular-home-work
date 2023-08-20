@@ -8,21 +8,14 @@ import { Router } from '@angular/router';
 })
 export class PhotoPageComponent {
 
-  public currentPhoto: any;
-
-  constructor(private photoService: PhotoService, private router: Router) {}
+  constructor(public photoService: PhotoService, private router: Router) {}
 
   ngOnInit() {
-    this.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
-    this.currentPhoto = JSON.parse(this.currentPhoto);
+    this.photoService.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
+    this.photoService.currentPhoto = JSON.parse(this.photoService.currentPhoto);
   }
 
   public goHome(): void {
     this.router.navigate(["/"]);
-  }
-
-  public removeFavorite() {
-    this.photoService.removeFavoritePhoto(this.currentPhoto.id);
-    this.router.navigate(['/favorites']);
   }
 }

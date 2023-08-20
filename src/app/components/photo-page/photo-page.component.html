@@ -1,6 +1,6 @@
 <div class="photo-page">
-  <img class="photo-page--photo" [src]="currentPhoto.download_url" alt="">
-  <h1>{{currentPhoto.author}}</h1>
-  <a (click)="removeFavorite()">I Don't Like This 💔</a>
+  <img class="photo-page--photo" [src]="photoService.currentPhoto.download_url" alt="">
+  <h1>{{photoService.currentPhoto.author}}</h1>
+  <a (click)="photoService.removeFavoritePhotoFromLocalStorage()">I Don't Like This 💔</a>
   <a class="photo-page--home-button" (click)="goHome()" routerLink="['/']">Home</a>
 </div>
