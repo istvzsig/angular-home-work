@@ -3,8 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TopNavigationComponent } from './top-navigation.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { InfinitePhotoStreamComponent } from '../infinite-photo-stream/infinite-photo-stream.component';
-import { FavoritePhotosComponent } from '../favorite-photos/favorite-photos.component';
 import { routes } from 'src/app/app-routing.module';
 
 describe('TopNavigationComponent', () => {
