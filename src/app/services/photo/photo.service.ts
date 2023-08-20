@@ -4,6 +4,7 @@ import { Photo } from 'src/app/models/photo';
 import { Router } from '@angular/router';
 import { InfiniteScrollService } from '../infinite-scroll/infinite-scroll.service';
 import { Observable, concatMap, delay, from, of } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,11 @@ export class PhotoService {
   public photos: Photo[] = [];
   public favoritePhotos: Photo[] = [];
   public currentPhoto: any;
-  public pageNumber: number = 1;
-  public batchSize: number = 12;
   public currentPhotoId: number;
-  public delay = Math.floor(Math.random() * (3000 - 1200 + 1) + 1200);
   public isLoading: boolean = false;
+  public pageNumber: number = environment.photoProcess.pageNumber;
+  public randomDelay = environment.photoProcess.randomDelay;
+  public batchSize: number = environment.photoProcess.batchSize;
 
   @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
@@ -36,7 +37,7 @@ export class PhotoService {
 
   public getPhotos(): Observable<Photo[]> {
     return this.http.get<Photo[]>(
-      `https://picsum.photos/v2/list?page=${this.pageNumber}&limit=${this.batchSize}`
+      `${environment.baseApiUrl}/v2/list?page=${this.pageNumber}&limit=${this.batchSize}`
     );
   }
 
@@ -49,7 +50,7 @@ export class PhotoService {
       next: (response: any) => {
         setTimeout(
           () => (this.photos = [...this.photos, ...response]),
-          this.delay
+          this.randomDelay
         );
       },
       error: (err: string) => console.error(err),
@@ -72,7 +73,7 @@ export class PhotoService {
   
   public addToFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.post(
-      'http://120.0.0.1:4200/photos',
+      `${environment.localHostUrl}/photos`,
       { id: photoId },
       this.headerConfig
     );
@@ -80,7 +81,7 @@ export class PhotoService {
 
   public removeFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.delete(
-      `http://120.0.0.1:4200/photos/${photoId}`,
+      `${environment.localHostUrl}/photos/${photoId}`,
       this.headerConfig
     );
   }
