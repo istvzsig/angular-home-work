@@ -1,5 +1,5 @@
 import { AfterViewInit, ElementRef, Injectable, ViewChild } from '@angular/core';
-import { PhotoService } from '../photo-service/photo.service';
+import { PhotoService } from '../photo/photo.service';
 
 @Injectable({
   providedIn: 'root',
