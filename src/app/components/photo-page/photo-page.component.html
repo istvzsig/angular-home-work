@@ -1,4 +1,14 @@
 <div class="photo-page">
-  <h1>ASDASDSAD</h1>
-  <img [src]="" alt="">
+  <img class="photo-page--photo" [src]="currentPhoto.download_url" alt="">
+  <p>{{currentPhoto.id}}</p>
+  <h1>{{currentPhoto.author}}</h1>
+  <a class="photo-page--home-button" (click)="goHome()" routerLink="['/']">ASDASD</a>
 </div>
+
+<!-- id: number;
+ author: string;
+ width: number;
+ height: number;
+ url: string;
+ download_url: string;
+ isFavorite: boolean; -->

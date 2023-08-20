@@ -1,18 +1,23 @@
 import { Component } from '@angular/core';
-import { Photo } from 'src/app/models/photo';
 import { PhotoService } from 'src/app/services/photo.service';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './photo-page.component.html',
   styleUrls: ['./photo-page.component.sass']
 })
 export class PhotoPageComponent {
-  public photo: Photo[];
-  public photoId = null;
 
-  constructor() {}
+  public currentPhoto: any;
+
+  constructor(private photoService: PhotoService, private router: Router) {}
 
   ngOnInit() {
+    this.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
+    this.currentPhoto = JSON.parse(this.currentPhoto);
+  }
 
+  public goHome(): void {
+    this.router.navigate(["/"]);
   }
 }
