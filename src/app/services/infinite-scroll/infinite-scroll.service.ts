@@ -21,8 +21,12 @@ export class InfiniteScrollService {
     });
   }
 
-  toggleLoading(): boolean {
+  public toggleLoading(): boolean {
     return this.isLoading = !this.isLoading;
   }
-
+  
+  public onScroll(): void {
+    this.photoService.pageNumber++;
+    this.photoService.appendPhotos();
+  }
 }

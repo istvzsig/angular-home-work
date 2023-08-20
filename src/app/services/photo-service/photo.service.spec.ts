@@ -49,7 +49,7 @@ describe('PhotoService', () => {
       },
     ];
 
-    photoService.getPhotos(1, 12).subscribe((res) => {
+    photoService.getPhotos().subscribe((res) => {
       expect(res).toEqual(names);
     });
 
