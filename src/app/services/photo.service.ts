@@ -12,6 +12,7 @@ export class PhotoService {
 
   public page: number = 1;
   public batchLimit: number = 12;
+  public currentPhotoId: number;
 
   private headerConfig = {
     headers: new HttpHeaders({
