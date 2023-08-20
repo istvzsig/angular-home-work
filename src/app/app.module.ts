@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 import { InfiniteScrollService } from './services/infinite-scroll/infinite-scroll.service';
 
 import { AppComponent } from './app.component';

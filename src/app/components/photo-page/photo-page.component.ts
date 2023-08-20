@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 import { Router } from '@angular/router';
 
 @Component({

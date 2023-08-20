@@ -1,6 +1,11 @@
 <div class="photo-page">
+  <!-- <div class="back-button"><</div> -->
   <img class="photo-page--photo" [src]="photoService.currentPhoto.download_url" alt="">
   <h1>{{photoService.currentPhoto.author}}</h1>
-  <a (click)="photoService.removeFavoritePhotoFromLocalStorage()">I Don't Like This 💔</a>
-  <a class="photo-page--home-button" (click)="goHome()" routerLink="['/']">Home</a>
+  <h4>Dimensions: {{photoService.currentPhoto.width}} x {{photoService.currentPhoto.height}} px</h4>
+  <ul style="list-style-type: none;">
+    <a target="_blank" href={{photoService.currentPhoto.download_url}}>FULL SIZE</a>
+  </ul>
+  <a style="font-size: 55px;" class="iDontLikeButton" (click)="photoService.removeFavoritePhotoFromLocalStorage()">💔</a>
+
 </div>
