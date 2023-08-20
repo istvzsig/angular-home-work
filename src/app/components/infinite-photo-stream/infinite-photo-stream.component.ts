@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoService } from 'src/app/services/photo.service';
+import { PhotoService } from 'src/app/services/photo-service/photo.service';
 import { Photo } from 'src/app/models/photo';
 
 @Component({
@@ -31,10 +31,10 @@ export class InfinitePhotoStreamComponent implements OnInit {
   loadPhotos(): void {
     this.toggleLoading();
     this.photoService.getPhotos(this.page, this.batchLimit).subscribe({
-      next: response => {
+      next: (response: any) => {
         setTimeout(() => this.photos = response, this.delay)
       },
-      error: err => console.error(err),
+      error: (err: string) => console.error(err),
       complete: () => this.toggleLoading()
     });
   }
@@ -42,10 +42,10 @@ export class InfinitePhotoStreamComponent implements OnInit {
   appendPhotos(): void {
     this.toggleLoading();
     this.photoService.getPhotos(this.page, this.batchLimit).subscribe({
-      next: response => {
+      next: (response: any) => {
         setTimeout(() => this.photos = [...this.photos, ...response], this.delay)
       },
-      error: err => console.error(err),
+      error: (err: string) => console.error(err),
       complete: () => this.toggleLoading()
     });
   }

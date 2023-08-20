@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { PhotoService } from './services/photo.service';
+import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { InfiniteScrollService } from './services/infinite-scroll/infinite-scroll.service';
 
 import { AppComponent } from './app.component';
 import { TopNavigationComponent } from './components/top-navigation/top-navigation.component';
@@ -22,9 +22,8 @@ import { FavoritePhotosComponent } from './components/favorite-photos/favorite-p
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    InfiniteScrollModule,
   ],
-  providers: [HttpClient, PhotoService],
+  providers: [HttpClient, PhotoService, InfiniteScrollService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
