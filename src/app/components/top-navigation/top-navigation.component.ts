@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PhotoService } from 'src/app/services/photo-service/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 
 @Component({
   selector: 'TopNavigation',
