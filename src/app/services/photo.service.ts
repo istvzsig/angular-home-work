@@ -8,7 +8,7 @@ import { Photo } from '../models/photo';
 })
 export class PhotoService {
   public photos = new BehaviorSubject([]);
-  public favorites: Photo[] = [];
+  public favoritePhotos: Photo[] = [];
 
   public page: number = 1;
   public batchLimit: number = 12;
@@ -24,9 +24,9 @@ export class PhotoService {
   constructor(private http: HttpClient) {}
 
   public getPhotos(page: number = 1, batchLimit: number = 1): Observable<Photo[]> {
-    return this.http.get<Photo[]>(`https://picsum.photos/v2/list?page=${page}&limit=${batchLimit}`)
+    return this.http.get<Photo[]>(`https://picsum.photos/v2/list?page=${page}&limit=${batchLimit}`);
   }
-
+  
   public addToFavoritePhoto(photoId: string) {
     return this.http.post(
       'http://120.0.0.1:4200/photos',
