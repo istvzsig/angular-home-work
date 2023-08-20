@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Photo } from 'src/app/models/photo';
 
 @Component({
@@ -9,8 +10,9 @@ import { Photo } from 'src/app/models/photo';
 })
 export class FavoritePhotosComponent {
   public favoritePhotos: Photo[] = [];
+  public currenPath: string;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loadFavoritePhotosFromLocalStorage();
@@ -29,7 +31,7 @@ export class FavoritePhotosComponent {
     }
     this.favoritePhotos = favorites;
   }
-
+  
   removeFavoritePhotosFromLocalStorage(photoId: number) {
     if(!window.localStorage.getItem(String(photoId))) {
       return console.log('Nothing to remove');
@@ -38,4 +40,8 @@ export class FavoritePhotosComponent {
     console.log('Photo removed from local storage', photoId);
     this.loadFavoritePhotosFromLocalStorage();
   }
+  
+    openPhoto(photo: any) {
+      this.router.navigate(['/detail', photo.id]);
+    }
 }
