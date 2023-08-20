@@ -4,7 +4,7 @@ import { Photo } from 'src/app/models/photo';
 import { InfiniteScrollService } from 'src/app/services/infinite-scroll/infinite-scroll.service';
 
 @Component({
-  selector: 'InfinitePhotoStream',
+  selector: 'PhotoStream',
   templateUrl: './photo-stream.component.html',
   styleUrls: ['./photo-stream.component.sass'],
 })
@@ -18,7 +18,6 @@ export class PhotoStreamComponent implements OnInit {
     this.photoService.loadPhotos();
     this.infiniteScrollService.updateOnScrollEvent(this.photoService);
   }
-
 
 // *************** Refactor this into its own service LoaderService
   toggleLoading(): boolean {
