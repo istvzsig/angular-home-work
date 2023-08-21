@@ -16,38 +16,39 @@ export class FavoritePhotosComponent {
 
   ngOnInit() {
     this.loadFavoritePhotosFromLocalStorage();
-    this.currentPhoto = window.localStorage.getItem(
-      String(this.photoService.currentPhotoId)
-    );
+    this.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
   }
 
-  loadFavoritePhotosFromLocalStorage() {
-    const favorites: Photo[] = [];
-    let i, keys;
-
-    (keys = Object.keys(localStorage)), (i = keys.length);
+  public loadFavoritePhotosFromLocalStorage() {
+    const favoritePhotosInLocalStorage: Photo[] = [];
+    let keys = Object.keys(localStorage);
+    let i = keys.length;
 
     while (i--) {
       const photo = JSON.parse(String(window.localStorage.getItem(keys[i])));
-      favorites.push(photo);
+      favoritePhotosInLocalStorage.push(photo);
     }
-    this.favoritePhotos = favorites;
+    this.favoritePhotos = favoritePhotosInLocalStorage;
   }
 
-  removeFavoritePhotosFromLocalStorage(photoId: number) {
-    if (!window.localStorage.getItem(String(photoId))) {
-      return console.log('Nothing to remove');
-    }
-    window.localStorage.removeItem(String(photoId));
-    console.log('Photo removed from local storage', photoId);
+  public removeFavoritePhotosFromLocalStorage(photoId: number) {
+    if (!this.getPhotoByIdFromLocalStorage(photoId)) return;
+    this.removePhotoByIdFromLocalStorage(photoId);
     this.loadFavoritePhotosFromLocalStorage();
+    this.router.navigate(['/favorites']);
   }
 
-  openPhoto(photo: any) {
-    if (!photo) {
-      this.router.navigate(['/']);
-    }
+  public openPhoto(photo: any): any {
+    if (!photo) return this.router.navigate(['/']);
     this.photoService.currentPhotoId = photo.id;
     this.router.navigate(['/photos', photo.id]);
+  }
+
+  private getPhotoByIdFromLocalStorage(photoId: number) {
+    return window.localStorage.getItem(String(photoId));
+  }
+
+  private removePhotoByIdFromLocalStorage(photoId: number) {
+    return window.localStorage.removeItem(String(photoId));
   }
 }
