@@ -21,7 +21,7 @@ export class PhotoService {
 
   @ViewChild('loadingSpinner') loadingSpinner: ElementRef;
 
-  private headerConfig = {
+  private headerOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -75,14 +75,14 @@ export class PhotoService {
     return this.http.post(
       `${environment.localHostUrl}/photos`,
       { id: photoId },
-      this.headerConfig
+      this.headerOptions
     );
   }
 
   public removeFavoritePhoto(photoId: string): Observable<Object> {
     return this.http.delete(
       `${environment.localHostUrl}/photos/${photoId}`,
-      this.headerConfig
+      this.headerOptions
     );
   }
 
