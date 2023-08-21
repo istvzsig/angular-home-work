@@ -6,6 +6,8 @@
   <ul style="list-style-type: none;">
     <a target="_blank" href={{photoService.currentPhoto.download_url}}>FULL SIZE</a>
   </ul>
-  <a style="font-size: 55px;" class="iDontLikeButton" (click)="photoService.removeFavoritePhotoFromLocalStorage()">💔</a>
+  <a style="font-size: 55px;" class="iDontLikeButton" (click)="photoService.removeFavoritePhotoFromLocalStorage()">
+   <span class="material-icons">pie_chart</span> 
+  </a>
 
 </div>
