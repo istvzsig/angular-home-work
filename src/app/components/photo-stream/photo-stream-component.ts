@@ -3,7 +3,7 @@ import { InfiniteScrollService } from 'src/app/services/infinite-scroll/infinite
 import { PhotoService } from 'src/app/services/photo/photo.service';
 
 @Component({
-  selector: 'PhotoStream',
+  selector: 'photo-stream',
   templateUrl: './photo-stream.component.html',
   styleUrls: ['./photo-stream.component.sass'],
 })

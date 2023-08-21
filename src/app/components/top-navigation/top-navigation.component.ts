@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { PhotoService } from 'src/app/services/photo/photo.service';
 
 @Component({
-  selector: 'TopNavigation',
+  selector: 'top-navigation',
   templateUrl: './top-navigation.component.html',
   styleUrls: ['./top-navigation.component.sass']
 })

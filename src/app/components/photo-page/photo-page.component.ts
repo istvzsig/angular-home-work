@@ -3,6 +3,7 @@ import { PhotoService } from 'src/app/services/photo/photo.service';
 import { Router } from '@angular/router';
 
 @Component({
+  selector: 'photo-page',
   templateUrl: './photo-page.component.html',
   styleUrls: ['./photo-page.component.sass']
 })

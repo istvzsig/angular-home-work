@@ -4,7 +4,7 @@ import { Photo } from 'src/app/models/photo';
 import { PhotoService } from 'src/app/services/photo/photo.service';
 
 @Component({
-  selector: 'FavoritePhotosComponent',
+  selector: 'favorite-photos',
   templateUrl: './favorite-photos.component.html',
   styleUrls: ['./favorite-photos.component.sass'],
 })
