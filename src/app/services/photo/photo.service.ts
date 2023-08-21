@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root',
 })
 export class PhotoService {
-  public photos: Photo[] = [];
+  public photos$: Photo[] = [];
   public favoritePhotos: Photo[] = [];
   public currentPhoto: any;
   public pageNumber: number = 1;
@@ -49,7 +49,7 @@ export class PhotoService {
     this.getPhotos().subscribe({
       next: (response: any) => {
         setTimeout(
-          () => (this.photos = [...this.photos, ...response]),
+          () => (this.photos$ = [...this.photos$, ...response]),
           this.delay
         );
       },
@@ -68,7 +68,7 @@ export class PhotoService {
       },
       error: (err: string) => console.error(err),
     });
-    this.photos = loadedPhotos;
+    this.photos$ = loadedPhotos;
   }
   
   public addToFavoritePhoto(photoId: string): Observable<Object> {
