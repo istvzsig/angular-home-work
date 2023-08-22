@@ -1,36 +1,12 @@
 @import './src/assets/css/animation'
 
-.infinite-photo-stream
-  &--photo-gallery
-    display: flex
-    flex-wrap: wrap
-    margin-top: 100px
-    background-color: transparent
-    height: 100%
-  &--photo
-    $margin: 2.5px
-    position: relative
-    cursor: pointer
-    overflow: hidden !important
-    transition: $transition
-    margin: $margin
-    border-radius: 0
-    max-width: calc(100vw / 3 - $margin * 2)
-    animation: 'show-up' 300ms linear forwards
-    @keyframes identifier
-      0%
-        opacity: 0
-      100%
-        opacity: 1
-    img
-      width: 100%
-      vertical-align: middle
-    &:hover 
-      opacity: 1 !important
-    &:hover > *
-        opacity: .4
-  
-
+.photo-stream
+  display: flex
+  flex-wrap: wrap
+  position: relative
+  top: 100px
+  background-color: transparent
+  height: 100%
   &--favorite-icon
     position: absolute
     top: 0
@@ -40,30 +16,18 @@
     background-blend-mode: soft-light
     animation: 300ms linear forwards
 
-  @keyframes show-favorite-icon
-    0%
-      opacity: 0 important
-    100%
-      opacity: 1 important
-
-  @keyframes hide-favorite-icon
-    0%
-      opacity: 1 important
-    100%
-      opacity: 0 important
-
-  &--loading-spinner
-    $width: 200px
+.loading-spinner
+  $width: 200px
+  width: 100%
+  max-width: 200px
+  left: calc(50% - $width / 2)
+  position: relative
+  margin: 100px 0
+  img
     width: 100%
-    max-width: 200px
-    left: calc(50% - $width / 2)
-    position: relative
-    margin: 100px 0
-    img
-      width: 100%
-      vertical-align: middle
+    vertical-align: middle
 
-    &.show
-      opacity: 1
-    &.hide
-      opacity: 9
+  &.show
+    opacity: 1
+  &.hide
+    opacity: 9

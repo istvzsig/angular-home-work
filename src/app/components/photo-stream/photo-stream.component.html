@@ -1,14 +1,9 @@
-<div class="infinite-photo-stream">
-  <div class="infinite-photo-stream--photo-gallery">
-    <div *ngFor="let photo of photoService.photos$" class="infinite-photo-stream--photo">
-      <photo-card-component
-        [photo]="photo"
-        (click)="onClick(photo)">
-      </photo-card-component>
-    </div>
+<div class="photo-stream">
+  <div *ngFor="let photo of photoService.photos$">
+    <photo-card-component (click)="onClick(photo)" [photo]="photo"></photo-card-component>
   </div>
 </div>
-<div #loadingSpinner class="infinite-photo-stream--loading-spinner">
+<div #loadingSpinner class="loading-spinner">
   <img src="../../../assets/loading-spinner.gif" alt="loading-spinner">
 </div>
 
