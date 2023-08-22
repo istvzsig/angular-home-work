@@ -1,6 +1,6 @@
 <div class="favorite-photo-stream">
   <h3 *ngIf="!favoritePhotos.length">You have not have saved photos</h3>
   <div *ngFor="let photo of favoritePhotos">
-    <photo-component [photo]="photo"></photo-component>
+    <photo-card-component (click)="onClick(photo)" [photo]="photo"></photo-card-component>
   </div>
 </div>

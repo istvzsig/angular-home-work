@@ -1,9 +1,18 @@
 @import './src/assets/css/animation'
+
 .favorite-photo-stream
   justify-conten: center
   align-items: center
   width: 100vw
   margin-top: 100px
   background-color: transparent
-  &:hover > *
-    opacity: 1
+  .photo-card
+    $margin: 2.5px
+    position: relative
+    cursor: pointer
+    overflow: hidden !important
+    transition: $transition
+    margin: $margin
+    border-radius: 0
+    max-width: calc(100vw / 3 - $margin * 2)
+    animation: 'show-up' 300ms linear forwards

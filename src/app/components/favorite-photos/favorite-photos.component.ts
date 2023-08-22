@@ -12,11 +12,17 @@ export class FavoritePhotosComponent {
   public favoritePhotos: Photo[] = [];
   public currentPhoto: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private photoService: PhotoService) {}
 
   ngOnInit() {
     this.loadFavoritePhotosFromLocalStorage();
     console.log(this.favoritePhotos);
+  }
+
+  public onClick(photo: Photo): any {
+    if (!photo) return this.router.navigate(['/']);
+    this.photoService.currentPhotoId = photo.id;
+    this.router.navigate(['/photos', photo.id]);
   }
 
   public loadFavoritePhotosFromLocalStorage() {
