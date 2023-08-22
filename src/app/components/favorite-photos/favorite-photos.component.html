@@ -1,5 +1,7 @@
 <div class="favorite-photo-stream">
-  <h3 *ngIf="!favoritePhotos.length">You have not have saved photos</h3>
+  <h2 *ngIf="!favoritePhotos.length">Looks like you have not favorite photos.
+    <p>Please click on the 'GET RADNOM' navigation link and pick some cool photos to save.</p>
+  </h2>
   <div *ngFor="let photo of favoritePhotos">
     <photo-card-component (click)="onClick(photo)" [photo]="photo"></photo-card-component>
   </div>
