@@ -11,6 +11,7 @@ import { TopNavigationComponent } from './components/top-navigation/top-navigati
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FavoritePhotosComponent } from './components/favorite-photos/favorite-photos.component';
 import { PhotoStreamComponent } from './components/photo-stream/photo-stream-component';
+import { PhotoComponent } from './components/photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PhotoStreamComponent } from './components/photo-stream/photo-stream-com
     TopNavigationComponent,
     PhotoStreamComponent,
     FavoritePhotosComponent,
+    PhotoComponent,
   ],
   imports: [
     HttpClientModule,
