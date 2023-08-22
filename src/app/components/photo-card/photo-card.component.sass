@@ -1,12 +1,35 @@
+@import './src/assets/css/dimensions'
+@import './src/assets/css/color-palette'
+@import './src/assets/css/animation'
+
 .photo-card
-  width: calc(100vw / 3)
-  float: left
-  max-height: 200px
+  position: relative
   cursor: pointer
   overflow: hidden !important
-  transition: none
+  transition: $transition
+  margin: $margin-large
+  border-radius: 10px
+  border: 1px solid $light-gray-border
+  max-width: calc(100vw / 3 - $margin-large * 2 - $border-size * 2)
+  animation: 'show-up' 300ms linear forwards
+
+  &:hover
+    img
+      transform: scale(1.2) translate3d(0, -5%, 0)
   img
+    position: relative
     width: 100%
     vertical-align: middle
-    &:hover
-      opacity: 1
+    transition: $transition
+  &--description
+    display: flex
+    justify-content: space-between
+    align-items: center
+    max-width: calc(100vw / 3 - 30px)
+    top: 0
+    left: 0
+    padding: 0 1rem
+    z-index: 1
+    h5,p
+      top: 0
+      left: 0

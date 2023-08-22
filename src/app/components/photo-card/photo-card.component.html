@@ -1,5 +1,7 @@
 <div class="photo-card">
   <img [src]="photo.download_url" alt="photo.author">
-  <p>{{photo.author}}</p>
-  <p>#{{photo.id}}</p>
+  <div class="photo-card--description">
+    <h5>{{photo.author}}</h5>
+    <p>#{{photo.id}}</p>
+  </div>
 </div>
