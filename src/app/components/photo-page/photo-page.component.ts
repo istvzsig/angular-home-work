@@ -13,19 +13,16 @@ export class PhotoPageComponent {
   constructor(public photoService: PhotoService, private router: Router) {}
   
   ngOnInit() {
-    this.photoService.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
-    this.photoService.currentPhoto = JSON.parse(this.photoService.currentPhoto);
+    this.setPhotoServiceCurrentPhoto();
   }
 
   setPhotoServiceCurrentPhoto() {
-    const currentPhoto = this.getCurrentPhotoFromLocalStorage();
+    const currentPhoto: any = this.getCurrentPhotoFromLocalStorage();
+    this.photoService.currentPhoto = JSON.parse(currentPhoto);
   }
 
   getCurrentPhotoFromLocalStorage() {
+    console.log(window.localStorage.getItem(String(this.photoService.currentPhotoId)));
     return window.localStorage.getItem(String(this.photoService.currentPhotoId));
-  }
-
-  public goHome(): void {
-    this.router.navigate(["/"]);
   }
 }
