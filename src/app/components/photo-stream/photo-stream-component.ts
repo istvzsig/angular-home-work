@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Photo } from 'src/app/models/photo';
 import { InfiniteScrollService } from 'src/app/services/infinite-scroll/infinite-scroll.service';
 import { PhotoService } from 'src/app/services/photo/photo.service';
 
@@ -11,9 +12,11 @@ export class PhotoStreamComponent implements OnInit {
 
   constructor(public photoService: PhotoService, public infiniteScrollService: InfiniteScrollService) {}
 
+  @Input() photo: Photo;
+
   ngOnInit() {
     this.photoService.loadPhotos();
-    this.infiniteScrollService.updateOnScrollEvent(this.photoService);
+    this.infiniteScrollService.handleOnScrollEvent(this.photoService);
   }
 
   ngAfterViewInit() {
