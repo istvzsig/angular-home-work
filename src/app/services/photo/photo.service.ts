@@ -92,6 +92,10 @@ export class PhotoService {
     window.localStorage.removeItem(this.currentPhoto.id);
   }
 
+  public setCurrentPhoto() {
+    
+  }
+
   public toggleFavoritePhoto(photo: Photo): void {
     if (!photo.isFavorite && !window.localStorage.getItem(String(photo.id))) {
       photo.isFavorite = true;
