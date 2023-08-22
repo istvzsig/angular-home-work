@@ -5,14 +5,20 @@ import { PhotoService } from '../photo/photo.service';
   providedIn: 'root',
 })
 export class InfiniteScrollService {
+  private scrollTop: number;
+  private clientHeight: number;
+  private scrollHeight: number;
 
-  public updateOnScrollEvent(photoService: PhotoService): void {
-    window.addEventListener('scroll', (e: Event) => {
-      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight) {
-        photoService.toggleLoading()
-        photoService.pageNumber++;
+  public handleOnScrollEvent(photoService: PhotoService): void {
+    window.addEventListener('scroll', () => {
+      this.scrollTop = document.documentElement.scrollTop;
+      this.clientHeight = document.documentElement.clientHeight;
+      this.scrollHeight = document.documentElement.scrollHeight;
+      
+      if (this.scrollTop + this.clientHeight >= this.scrollHeight) {
+        photoService.toggleLoading();
         photoService.appendPhotos();
+        photoService.pageNumber++;
       }
       else photoService.toggleLoading();
     });
