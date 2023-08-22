@@ -91,12 +91,8 @@ export class PhotoService {
     this.router.navigate(['/favorites']);
     window.localStorage.removeItem(this.currentPhoto.id);
   }
-
-  public setCurrentPhoto() {
-    
-  }
-
-  public toggleFavoritePhoto(photo: Photo): void {
+  
+  public toggleFavoritePhoto(photo: Photo): any {
     if (!photo.isFavorite && !window.localStorage.getItem(String(photo.id))) {
       photo.isFavorite = true;
       window.localStorage.setItem(String(photo.id), JSON.stringify(photo));
