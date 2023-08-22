@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Photo } from 'src/app/models/photo';
 import { PhotoService } from 'src/app/services/photo/photo.service';
@@ -12,11 +12,11 @@ export class FavoritePhotosComponent {
   public favoritePhotos: Photo[] = [];
   public currentPhoto: any;
 
-  constructor(private photoService: PhotoService, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loadFavoritePhotosFromLocalStorage();
-    this.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
+    console.log(this.favoritePhotos);
   }
 
   public loadFavoritePhotosFromLocalStorage() {
@@ -36,12 +36,6 @@ export class FavoritePhotosComponent {
     this.removePhotoByIdFromLocalStorage(photoId);
     this.loadFavoritePhotosFromLocalStorage();
     this.router.navigate(['/favorites']);
-  }
-
-  public openPhoto(photo: any): any {
-    if (!photo) return this.router.navigate(['/']);
-    this.photoService.currentPhotoId = photo.id;
-    this.router.navigate(['/photos', photo.id]);
   }
 
   private getPhotoByIdFromLocalStorage(photoId: number) {
