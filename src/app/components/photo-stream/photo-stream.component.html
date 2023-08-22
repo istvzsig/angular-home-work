@@ -2,7 +2,7 @@
   <div class="infinite-photo-stream--photo-gallery">
     <div (click)="photoService.toggleFavoritePhoto(photo)" *ngFor="let photo of photoService.photos$" class="infinite-photo-stream--photo">
       <p *ngIf="photo.isFavorite" class="infinite-photo-stream--favorite-icon">♥️</p>
-      <img [src]="photo.download_url" alt="No Image.">
+      <photo-component [photo]="photo"></photo-component>
     </div>
   </div>
 </div>
