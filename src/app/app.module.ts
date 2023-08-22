@@ -11,15 +11,15 @@ import { TopNavigationComponent } from './components/top-navigation/top-navigati
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FavoritePhotosComponent } from './components/favorite-photos/favorite-photos.component';
 import { PhotoStreamComponent } from './components/photo-stream/photo-stream-component';
-import { PhotoComponent } from './components/photo/photo.component';
+import { PhotoCardComponent } from './components/photo-card/photo-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopNavigationComponent,
+    PhotoCardComponent,
     PhotoStreamComponent,
     FavoritePhotosComponent,
-    PhotoComponent,
   ],
   imports: [
     HttpClientModule,
