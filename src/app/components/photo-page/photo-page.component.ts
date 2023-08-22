@@ -11,7 +11,7 @@ import { Photo } from 'src/app/models/photo';
 export class PhotoPageComponent {
 
   constructor(public photoService: PhotoService, private router: Router) {}
-  @Input() photo: Photo;
+  
   ngOnInit() {
     this.photoService.currentPhoto = window.localStorage.getItem(String(this.photoService.currentPhotoId));
     this.photoService.currentPhoto = JSON.parse(this.photoService.currentPhoto);
