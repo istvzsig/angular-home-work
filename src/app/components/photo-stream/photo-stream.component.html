@@ -1,8 +1,10 @@
 <div class="infinite-photo-stream">
   <div class="infinite-photo-stream--photo-gallery">
-    <div (click)="photoService.toggleFavoritePhoto(photo)" *ngFor="let photo of photoService.photos$" class="infinite-photo-stream--photo">
-      <p *ngIf="photo.isFavorite" class="infinite-photo-stream--favorite-icon">♥️</p>
-      <photo-component [photo]="photo"></photo-component>
+    <div *ngFor="let photo of photoService.photos$" class="infinite-photo-stream--photo">
+      <photo-card-component
+        [photo]="photo"
+        (click)="onClick(photo)">
+      </photo-card-component>
     </div>
   </div>
 </div>
