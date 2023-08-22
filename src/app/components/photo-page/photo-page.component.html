@@ -3,9 +3,7 @@
   <h1>{{photoService.currentPhoto.author}}</h1>
   <h4>Dimensions: {{photoService.currentPhoto.width}} x {{photoService.currentPhoto.height}} px</h4>
   <ul style="list-style-type: none;">
-    <a target="_blank" href={{photoService.currentPhoto.download_url}}>
-      FULL SIZE
-    </a>
+    <a target="_blank" href={{photoService.currentPhoto.download_url}}>Click to open full size image</a>
   </ul>
   <a style="font-size: 55px;" class="iDontLikeButton" (click)="photoService.removeFavoritePhotoFromLocalStorage()">
    <span class="material-symbols-outlined">favorite</span> 
