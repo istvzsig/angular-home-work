@@ -1,4 +1,4 @@
-# Photo Monkey 🙈
+# Angular Home Work - 48hrs
 
 ## Frontend Developer Test v4 👨‍💻
 
@@ -65,9 +65,3 @@ Run unit tests using the following command:
 ```
 ng test
 ```
-
-## Notes
-
-I am incredibly excited about this opportunity with <img src="https://cloud.xm-cdn.com/static/xm/common/logos/XMLogo-2021_homepage.svg" alt="drawing" width="55"/> and eager to learn Angular and CS in depth. Feel free to reach out if you have any questions or need clarification.
-
-Feel free to reach out if you have any questions or need clarification.
